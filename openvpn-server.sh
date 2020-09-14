@@ -171,6 +171,7 @@ echo "=================================="
 echo "Stop OpenVPN Server: systemctl stop ${OPENVPN_SERVICE_NAME}@server${PORT}.service"
 echo "Start OpenVPN Server: systemctl start ${OPENVPN_SERVICE_NAME}@server${PORT}.service"
 echo "Disable OpenVPN Server: systemctl disable ${OPENVPN_SERVICE_NAME}@server${PORT}.service"
+echo "Enable OpenVPN Server: systemctl enable ${OPENVPN_SERVICE_NAME}@server${PORT}.service"
 
 rm -rf /etc/openvpn/mikrotik-ssl/client-${PORT}.crt;
 rm -rf /etc/openvpn/mikrotik-ssl/client-${PORT}.key;
