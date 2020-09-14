@@ -106,6 +106,7 @@ persist-tun
 auth sha1
 cipher AES-256-CBC
 verb 5
+script-security 2
 up /etc/openvpn/server-up.sh
 down /etc/openvpn/server-down.sh
 EOF
