@@ -122,8 +122,8 @@ elif [ -f "/usr/lib/openvpn/openvpn-plugin-auth-pam.so" ]; then
 	echo "plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
 fi
 
-NETWORK_DEVICE=$(ip route | grep default | awk '{print $5}' | head -n1)
-IPTABLES="/bin/which iptables";
+NETWORK_DEVICE=$(ip route | grep default | awk '{print $5}' | head -n1);
+IPTABLES=$(/bin/which iptables);
 
 echo '#!/bin/bash' > /etc/openvpn/server-up.sh;
 echo "echo 1 > /proc/sys/net/ipv4/ip_forward" >> /etc/openvpn/server-up.sh;
