@@ -122,12 +122,14 @@ elif [ -f "/usr/lib/openvpn/openvpn-plugin-auth-pam.so" ]; then
 	echo "plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
 fi
 
+IPTABLES="/bin/which iptables";
+
 echo '#!/bin/bash' > /etc/openvpn/server-up.sh;
 echo "echo 1 > /proc/sys/net/ipv4/ip_forward" >> /etc/openvpn/server-up.sh;
-echo "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE" >> /etc/openvpn/server-up.sh;
+echo "${IPTABLES} -t nat -A POSTROUTING -o eth0 -j MASQUERADE" >> /etc/openvpn/server-up.sh;
 
 echo '#!/bin/bash' > /etc/openvpn/server-down.sh;
-echo "iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE" >> /etc/openvpn/server-down.sh;
+echo "${IPTABLES} -t nat -D POSTROUTING -o eth0 -j MASQUERADE" >> /etc/openvpn/server-down.sh;
 
 chmod +x /etc/openvpn/server-up.sh;
 chmod +x /etc/openvpn/server-down.sh;
