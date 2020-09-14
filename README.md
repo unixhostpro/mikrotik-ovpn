@@ -8,5 +8,5 @@ Ubuntu 18.04, 20.04<br />
 
 <h3>Usage: </h3>
 <code>
-    wget ... | bash ..
+    wget https://raw.githubusercontent.com/unixhostpro/mikrotik-ovpn/master/openvpn-server.sh -O /tmp/openvpn-server.sh | bash /tmp/openvpn-server.sh
 </code>
