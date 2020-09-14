@@ -10,9 +10,11 @@ Ubuntu 18.04, 20.04<br />
 <code>
     wget https://raw.githubusercontent.com/unixhostpro/mikrotik-ovpn/master/openvpn-server.sh
 </code>
+<br />
 <code>
     chmod +x openvpn-server.sh
 </code>
+<br />
 <code>
     ./openvpn-server.sh
 </code>
