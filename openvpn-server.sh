@@ -149,18 +149,9 @@ echo "=======-Client Certificate-======="
 echo "=================================="
 cat /etc/openvpn/mikrotik-ssl/client-${PORT}.crt;
 echo "=================================="
-echo "=====-Client Certificate END-====="
-echo "=================================="
-
-
-echo "=================================="
 echo "=======-Client Private Key-======="
 echo "=================================="
 cat /etc/openvpn/mikrotik-ssl/client-${PORT}.key;
-echo "=================================="
-echo "=====-Client Private Key END-====="
-echo "=================================="
-
 echo "=================================="
 echo "========-Login Credentials-======="
 echo "=================================="
