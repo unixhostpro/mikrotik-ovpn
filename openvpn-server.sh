@@ -22,6 +22,9 @@ elif [ -f "/etc/centos-release" ]; then
 		if [ "$VERSION_ID" == "8" ]; then
 			OPENVPN_CONFIG_DIR="/etc/openvpn/server"
 			OPENVPN_SERVICE_NAME="openvpn-server"
+			if [ ! -d "$OPENVPN_CONFIG_DIR" ]; then
+				mkdir $OPENVPN_CONFIG_DIR;
+			fi
 		fi
 	fi
 	yum -y install openvpn openssl
