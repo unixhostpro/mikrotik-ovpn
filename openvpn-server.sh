@@ -168,8 +168,9 @@ echo "OpenVPN Port: $PORT"
 echo "OpenVPN USERNAME: ${VPN_USER}"
 echo "OpenVPN PASSWORD: ${VPN_PASSWORD}"
 echo "=================================="
-echo "For add new users use command: useradd -M -s /bin/false YOURUSERNAME"
-echo "And for set password: passwd YOURUSERNAME"
+echo "Stop OpenVPN Server: systemctl stop ${OPENVPN_SERVICE_NAME}@server${PORT}.service"
+echo "Start OpenVPN Server: systemctl start ${OPENVPN_SERVICE_NAME}@server${PORT}.service"
+echo "Disable OpenVPN Server: systemctl disable ${OPENVPN_SERVICE_NAME}@server${PORT}.service"
 
 rm -rf /etc/openvpn/mikrotik-ssl/client-${PORT}.crt;
 rm -rf /etc/openvpn/mikrotik-ssl/client-${PORT}.key;
