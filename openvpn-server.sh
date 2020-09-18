@@ -34,11 +34,11 @@ else
 fi
 
 if [ -f "/usr/lib/x86_64-linux-gnu/openvpn/plugins/openvpn-plugin-auth-pam.so" ]; then 
-	echo "plugin /usr/lib/x86_64-linux-gnu/openvpn/plugins/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
+	AUTH_PLUGIN="plugin /usr/lib/x86_64-linux-gnu/openvpn/plugins/openvpn-plugin-auth-pam.so login"
 elif [ -f "/usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so" ]; then
-	echo "plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
+	AUTH_PLUGIN="plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so login"
 elif [ -f "/usr/lib/openvpn/openvpn-plugin-auth-pam.so" ]; then
-	echo "plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
+	AUTH_PLUGIN="plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login"
 else
 	echo "openvpn-plugin-auth-pam.so not found";
 	exit;
