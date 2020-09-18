@@ -33,6 +33,17 @@ else
 	exit
 fi
 
+if [ -f "/usr/lib/x86_64-linux-gnu/openvpn/plugins/openvpn-plugin-auth-pam.so" ]; then 
+	echo "plugin /usr/lib/x86_64-linux-gnu/openvpn/plugins/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
+elif [ -f "/usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so" ]; then
+	echo "plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
+elif [ -f "/usr/lib/openvpn/openvpn-plugin-auth-pam.so" ]; then
+	echo "plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
+else
+	echo "openvpn-plugin-auth-pam.so not found";
+	exit;
+fi
+
 while true;
 do
 	PORT=$(seq 20000 30000 | sort -R | head -n 1);
@@ -115,13 +126,7 @@ up /etc/openvpn/server-up.sh
 down /etc/openvpn/server-down.sh
 EOF
 
-if [ -f "/usr/lib/x86_64-linux-gnu/openvpn/plugins/openvpn-plugin-auth-pam.so" ]; then 
-	echo "plugin /usr/lib/x86_64-linux-gnu/openvpn/plugins/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
-elif [ -f "/usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so" ]; then
-	echo "plugin /usr/lib64/openvpn/plugins/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
-elif [ -f "/usr/lib/openvpn/openvpn-plugin-auth-pam.so" ]; then
-	echo "plugin /usr/lib/openvpn/openvpn-plugin-auth-pam.so login" >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
-fi
+echo $AUTH_PLUGIN >> ${OPENVPN_CONFIG_DIR}/server${PORT}.conf;
 
 NETWORK_DEVICE=$(ip route | grep default | awk '{print $5}' | head -n1);
 IPTABLES=$(/bin/which iptables);
