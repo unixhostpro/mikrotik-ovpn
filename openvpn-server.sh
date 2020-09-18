@@ -30,6 +30,7 @@ elif [ -f "/etc/centos-release" ]; then
 	yum -y install openvpn openssl
 else
 	echo "Distributive not supported";
+	exit
 fi
 
 while true;
