@@ -109,8 +109,11 @@ ca /etc/openvpn/mikrotik-ssl/ca-${PORT}.crt
 cert /etc/openvpn/mikrotik-ssl/server-${PORT}.crt
 key /etc/openvpn/mikrotik-ssl/server-${PORT}.key
 dh /etc/openvpn/mikrotik-ssl/dh2048-${PORT}.pem
+topology subnet
 server 10.${SUB1}.${SUB2}.0 255.255.255.0
 client-to-client
+ifconfig-pool-persist ipp.txt
+username-as-common-name
 push "dhcp-option DNS 1.1.1.1"
 push "dhcp-option DNS 8.8.8.8"
 user $OPENVPN_USER
