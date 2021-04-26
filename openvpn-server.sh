@@ -59,7 +59,7 @@ fi
 #Server certificate
 openssl genrsa -out /etc/openvpn/mikrotik-ssl/ca-${PORT}.key 4096 > /dev/null
 
-openssl req -x509 -new -key /etc/openvpn/mikrotik-ssl/ca-${PORT}.key \
+openssl req -x509 -days 3650 -new -key /etc/openvpn/mikrotik-ssl/ca-${PORT}.key \
     -out /etc/openvpn/mikrotik-ssl/ca-${PORT}.crt \
     -subj '/C=SK/ST=Bratislava/L=Bratislava/CN=root'
 
@@ -69,7 +69,7 @@ openssl req -new -key /etc/openvpn/mikrotik-ssl/server-${PORT}.key \
     -out /etc/openvpn/mikrotik-ssl/server-${PORT}.crt \
     -subj '/C=SK/ST=Bratislava/L=Bratislava/CN=server'
 
-openssl x509 -req -days 365 -in /etc/openvpn/mikrotik-ssl/server-${PORT}.crt \
+openssl x509 -req -days 3650 -in /etc/openvpn/mikrotik-ssl/server-${PORT}.crt \
     -CA /etc/openvpn/mikrotik-ssl/ca-${PORT}.crt -CAkey /etc/openvpn/mikrotik-ssl/ca-${PORT}.key \
     -set_serial 01 -out /etc/openvpn/mikrotik-ssl/server-${PORT}.crt
 
@@ -82,7 +82,7 @@ openssl req -new -key /etc/openvpn/mikrotik-ssl/client-${PORT}.key \
     -out /etc/openvpn/mikrotik-ssl/client-${PORT}.crt \
     -subj '/C=SK/ST=Bratislava/L=Bratislava/CN=client'
 
-openssl x509 -req -days 365 -in /etc/openvpn/mikrotik-ssl/client-${PORT}.crt \
+openssl x509 -req -days 3650 -in /etc/openvpn/mikrotik-ssl/client-${PORT}.crt \
     -CA /etc/openvpn/mikrotik-ssl/ca-${PORT}.crt -CAkey /etc/openvpn/mikrotik-ssl/ca-${PORT}.key \
     -set_serial 01 -out /etc/openvpn/mikrotik-ssl/client-${PORT}.crt
 
